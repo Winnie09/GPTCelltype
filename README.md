@@ -45,11 +45,13 @@ Then we can obtain the output
 "T helper cells"      "Monocytes" 
 ```
 
-## Contact the Author
-Author: Wenpin Hou, Zhicheng Ji
+## Vignette
 
-Report bugs and provide suggestions by sending email to:
+You can view the complete vignette [here](https://winnie09.github.io/Wenpin_Hou/pages/gptcelltype.html).
 
-Maintainer: Wenpin Hou (wh2526@cumc.columbia.edu)
 
-Or open a new issue on this Github page
+## Contact
+
+Authors: Wenpin Hou (wh2526@cumc.columbia.edu), Zhicheng Ji (zhicheng.ji@duke.edu)
+
+Report bugs and provide suggestions by sending email to the maintainer Dr. Wenpin Hou (wh2526@cumc.columbia.edu) or open a new issue on this Github page. 
