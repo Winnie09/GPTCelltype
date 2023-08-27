@@ -7,8 +7,6 @@ Cell type annotation is an essential step in single-cell RNA-seq analysis. Howev
 We developed this software, **GPTCelltype**, to provide reference-free, cost-effective automated cell type annotation using GPT-4 for single-cell RNA-seq analysis.
 
 
-
-
 ## Installation
 
 GPTCelltype software can be installed via Github. Users should have R > 3.5.x installed. R can be downloaded here: http://www.r-project.org/.
