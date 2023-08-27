@@ -17,12 +17,12 @@ For Windows users, Rtools is also required to be installed. Rtools can be downlo
 
 For mac users, if there is any problem with installation problem, please try download and install clang-8.0.0.pkg from the following URL: https://cloud.r-project.org/bin/macosx/tools/clang-8.0.0.pkg
 
-To install the latest version of Lamian package via Github, run the following commands in R:
+To install the latest version of GPTCelltype package via Github, run the following commands in R:
 ```{r eval = FALSE}
 remotes::install_github("Winnie09/GPTCelltype")
 ```
 
-GPTCelltype depends on the R package [openai](https://cran.r-project.org/web/packages/openai/index.html). Please install and load `openai` before running `GPTCelltype`.
+GPTCelltype depends on the R package [openai](https://cran.r-project.org/web/packages/openai/index.html). Please install `openai` as well. 
 
 ```{r eval = FALSE}
 install.packages("openai")
@@ -60,7 +60,6 @@ library(Seurat, quietly = TRUE)
 
 We use the embedded data `pbmc_small` from `Seurat` as an example. 
 ```{r}
-
 data("pbmc_small")
 all.markers <- FindAllMarkers(object = pbmc_small)
 gptcelltype(all.markers, 
