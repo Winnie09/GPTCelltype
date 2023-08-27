@@ -66,7 +66,6 @@ library(Seurat, quietly = TRUE)
 
 We use the embedded data `pbmc_small` from `Seurat` as an example. 
 ```{r}
-
 data("pbmc_small")
 all.markers <- FindAllMarkers(object = pbmc_small)
 gptcelltype(all.markers, 
