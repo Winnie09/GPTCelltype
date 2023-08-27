@@ -12,7 +12,7 @@
 #' @import openai
 #' @export
 #' @return A vector of cell types
-#' @author Wenpin Hou<wh2526@@cumc.columbia.edu>, Zhicheng Ji
+#' @author Wenpin Hou <wh2526@@cumc.columbia.edu>, Zhicheng Ji <zhicheng.ji@@duke.edu>
 #' @examples 
 #' #Gene list as input
 #' gptcelltype(input=list(gs1=c('CD4,CD3D'),gs2='CD14'),tissuename='human PBMC',openai_key=yourkey, model = 'gpt-4')
@@ -21,9 +21,8 @@
 #' library(Seurat)
 #' data("pbmc_small")
 #' all.markers <- FindAllMarkers(object = pbmc_small)
-#' gptcelltype(all.markers, tissuename='human pbmc', openai_key=yourkey)
+#' gptcelltype(all.markers, tissuename='human PBMC', openai_key=yourkey)
 
-library(openai)
 gptcelltype <- function(input, tissuename=NULL, openai_key, model='gpt-4', topgenenumber = 10) {
 	
 	Sys.setenv(OPENAI_API_KEY = openai_key)
