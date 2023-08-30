@@ -50,38 +50,39 @@ Among the input arguments, **`input`** can either be the differential gene table
 
 #### Example 1: Seurat object as input
 
-You have to install Seurat package first to run this example
-
-```{r}
-library(Seurat, quietly = TRUE)
-```
+GPTCelltype integrates seamlessly with the Seurat pipeline. It can take an Seurat object as input, if the Seurat object has marker genes information. Specifially, this can be achieved after running the Seurat function `FindAllMarkers()`. Here follows an example.
 
 We use the embedded data `pbmc_small` from `Seurat` as an example. 
 ```{r}
+library(Seurat, quietly = TRUE)
 data("pbmc_small")
 all.markers <- FindAllMarkers(object = pbmc_small)
-gptcelltype(all.markers, 
+res <- gptcelltype(all.markers, 
             tissuename = 'human PBMC', 
-            openai_key = yourkey, ## Note: Please use your OpenAI key.
+            openai_key = NA, ## Note: Please provide your OpenAI key to get cell type annotations; or otherwise the output is the prompt itself.
             model = 'gpt-4'
 )
+cat(res)
 ```
 
-Then we can obtain the output "Monocytes, Dendritic cells" "Monocytes" "B cells".
+**If you provide your `openai_key`, then you can obtain the output "Monocytes, Dendritic cells" "Monocytes" "B cells".** In this illustration, the default setting `openai_key = NA` is employed. As a result, we receive the prompt directly, which can be inputted into an online GPT interface to obtain cell type annotations.
+
 
 ####  Example 2: a list of genes as input
 
-For example, if we provide a list of two gene vectors: the first one contains *CD4* and *CD3D*, and the second one contains *CD14*, then we can call the function in this way:
+If we provide a list of two gene vectors: the first vector contains *CD4* and *CD3D*, and the second vector contains *CD14*, then we can call the function in this way:
 ```{r}
-gptcelltype(
+res <- gptcelltype(
   input = list(cluster1 = c('CD4, CD3D'), cluster2 = 'CD14'),
   tissuename = 'human PBMC',
-  openai_key = yourkey, ## Note: Please use your OpenAI key.
+  openai_key = NA, ## Note: Please provide your OpenAI key to get cell type annotations; or otherwise the output is the prompt itself.
   model = 'gpt-4'
 )
+cat(res)
 ```
 
-Then we can obtain the output "T helper cells" "Monocytes".
+**If you provide your `openai_key`, then you can obtain the output "T helper cells" "Monocytes".**
+In this illustration, the default setting `openai_key = NA` is employed. As a result, we receive the prompt directly, which can be inputted into an online GPT interface to obtain cell type annotations.
 
 ## Vignette
 
