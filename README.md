@@ -127,6 +127,6 @@ You can view the complete vignette [here](https://winnie09.github.io/Wenpin_Hou/
 
 ## Contact
 
-Authors: Wenpin Hou (wh2526@cumc.columbia.edu), Zhicheng Ji (zhicheng.ji@duke.edu)
+Authors: Wenpin Hou (wh2526@cumc.columbia.edu), Zhicheng Ji (zhicheng.ji@duke.edu).
 
 Report bugs and provide suggestions by sending email to the maintainer Dr. Wenpin Hou (wh2526@cumc.columbia.edu) or open a new issue on this Github page. 
