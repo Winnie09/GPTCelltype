@@ -62,7 +62,8 @@ gptcelltype <- function(input, tissuename=NULL, openai_key, model='gpt-4', topge
       names(res) <- names(input)[id]
       res
     },simplify = F) 
-    return(unlist(allres))
+    print('It is always recommended to check the results returned by GPT-4 in case of AI hallucination, before going to down-stream analysis.')
+    return(gsub(',$','',unlist(allres)))
   }
   
 }
