@@ -31,6 +31,8 @@ install.packages("openai")
 GPTCelltype integrates the [OpenAI API](https://platform.openai.com/account/api-keys) into the software. To connect to OpenAI API, a secret [API key](https://platform.openai.com/account/api-keys) is required. You can generate your API key in your OpenAI account webpage: log in to [OpenAI](https://openai.com/), click on "Personal" on the upper right corner, click on "View API keys" in the break-down list, and then click on "Create new secret key" which directs you [API key page](https://platform.openai.com/account/api-keys). Copy the key and paste it on a note for further use. Users need to pass their secret API key to GPTCelltype functions as one of the inputs. 
 
 
+![](/Users/wenpinhou/Dropbox/gptcelltype/github/GPTCelltype/vignettes/openaikeypage.png)
+
 ## Run GPTCelltype
 
 First of all, please load the packages.
@@ -52,20 +54,54 @@ Among the input arguments, **`input`** can either be the differential gene table
 
 GPTCelltype integrates seamlessly with the Seurat pipeline. It can take an Seurat object as input, if the Seurat object has marker genes information. Specifially, this can be achieved after running the Seurat function `FindAllMarkers()`. Here follows an example.
 
-We use the embedded data `pbmc_small` from `Seurat` as an example. 
-```{r}
-library(Seurat, quietly = TRUE)
+
+In the below example, we are going to use a Seurat object called 'pbmc_small' provided by the Seurat package. In real applications, a Seurat project obtained after running the standard Seurat pipeline should be prepared. The Seurat project should have cell clustering available. Use FindAllMarkers() function to generate the differential gene table if you haven't done so:
+
+```{r eval = FALSE}
+data("pbmc_small")
+all.markers <- FindAllMarkers(object = pbmc_small)
+```
+
+Perform cell type annotation by GPT-4 using the gptcelltype() function. Here you can optionally provide the actual name of the tissue for your dataset.
+```{r eval = FALSE}
+res <- gptcelltype(all.markers, 
+            tissuename = 'human PBMC', 
+            openai_key = openaikey, 
+            ## Note: Please provide your OpenAI key to get cell type annotations;
+            ## or otherwise the output is the prompt itself.
+            model = 'gpt-4'
+)
+```
+
+It is recommended to check the results returned by GPT-4 in case of AI hallucination, before going to down-stream analysis.
+
+If the results make sense, we can assign the cell type annotations back to the Seurat object and visualize the cell type annotations on the UMAP:
+
+```{r eval = FALSE}
+pbmc_small$celltype <- res[as.character(Idents(pbmc_small))]
+DimPlot(pbmc_small,group.by='celltype')
+```
+
+If the results need to be fine-tuned, it is easy to reassign cell type annotations for some clusters. For example, to change the cell type annotation for cluster 0:
+
+```{r eval = FALSE}
+res[1] <- 'Classical monocytes'
+pbmc_small$celltype <- res[as.character(Idents(pbmc_small))]
+```
+
+If you prefer not to link to GPT-4 API or do not have OpenAI key, you can set `openai_key = NA`. In this case, the gptcelltype() function will print the prompt directly, which can be copied and pasted into the GPT-4 or ChatGPT online user interface to obtain cell type annotations.
+
+```{r eval = FALSE}
 data("pbmc_small")
 all.markers <- FindAllMarkers(object = pbmc_small)
 res <- gptcelltype(all.markers, 
             tissuename = 'human PBMC', 
-            openai_key = NA, ## Note: Please provide your OpenAI key to get cell type annotations; or otherwise the output is the prompt itself.
+            openai_key = NA, 
+            ## Note: When NA, the output is the prompt itself.
             model = 'gpt-4'
 )
 cat(res)
 ```
-
-**If you provide your `openai_key`, then you can obtain the output "Monocytes, Dendritic cells" "Monocytes" "B cells".** In this illustration, the default setting `openai_key = NA` is employed. As a result, we receive the prompt directly, which can be inputted into an online GPT interface to obtain cell type annotations.
 
 
 ####  Example 2: a list of genes as input
