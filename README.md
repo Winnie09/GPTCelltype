@@ -9,7 +9,7 @@ We developed this software, **GPTCelltype**, to provide reference-free, cost-eff
 
 ## Installation
 
-GPTCelltype software can be installed via Github. Users should have R > 3.5.x installed. R can be downloaded here: http://www.r-project.org/.
+GPTCelltype software can be installed via Github in seconds. Users should have R > 3.5.x installed. R can be downloaded here: http://www.r-project.org/.
 
 For Windows users, Rtools is also required to be installed. Rtools can be downloaded here: (https://cloud.r-project.org/bin/windows/Rtools/). For R version 3.5.x, Rtools35.exe is recommended. Use default settings to perform the installation.
 
