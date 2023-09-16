@@ -124,6 +124,9 @@ In this illustration, the default setting `openai_key = NA` is employed. As a re
 
 You can view the complete vignette [here](https://winnie09.github.io/Wenpin_Hou/pages/gptcelltype.html).
 
+## Citation
+
+Hou, W. and Ji, Z., 2023. Reference-free and cost-effective automated cell type annotation with GPT-4 in single-cell RNA-seq analysis. [bioRxiv, pp.2023-04](https://www.biorxiv.org/content/10.1101/2023.04.16.537094v1). 
 
 ## Contact
 
