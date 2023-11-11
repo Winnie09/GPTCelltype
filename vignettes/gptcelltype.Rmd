@@ -36,11 +36,21 @@ GPTCelltype depends on the R package [openai](https://cran.r-project.org/web/pac
 install.packages("openai")
 ```
 
-### OpenAI Key
+### Set up OpenAI API key as an environment variable
 
-GPTCelltype integrates the [OpenAI API](https://platform.openai.com/account/api-keys) into the software. To connect to OpenAI API, a secret [API key](https://platform.openai.com/account/api-keys) is required. You can generate your API key in your OpenAI account webpage: log in to [OpenAI](https://openai.com/), click on "Personal" on the upper right corner, click on "View API keys" in the break-down list, and then click on "Create new secret key" which directs you to the [API key page](https://platform.openai.com/account/api-keys). Copy the key and paste it on a note for further use.  Users need to pass their secret API key to GPTCelltype functions as one of the inputs to get cell type annotations. Avoid sharing your API key with others or uploading it to public spaces. Make sure it's not visible in browsers or any client-side scripts.
+GPTCelltype integrates the [OpenAI API](https://platform.openai.com/account/api-keys) into the software. To connect to OpenAI API, a secret [API key](https://platform.openai.com/account/api-keys) is required.
+To avoid the risk of exposing the API key or comitting the key to browsers, users need to set up the API key as a system environment variable before running GPTCelltype. If the API key is provided, cell type annotations are returned. Otherwise, if the API key is not provided, the output from GPTCelltype is the prompt itself which users can further used to communicate with the GPT chatbot. 
+
+
+You can generate your API key in your OpenAI account webpage: log in to [OpenAI](https://openai.com/), click on "Personal" on the upper right corner, click on "View API keys" in the break-down list, and then click on "Create new secret key" which directs you to the [API key page](https://platform.openai.com/account/api-keys). Copy the key and paste it on a note for further use. Avoid sharing your API key with others or uploading it to public spaces. Make sure it's not visible in browsers or any client-side scripts.
 
 ![](/Users/wenpinhou/Dropbox/gptcelltype/github/GPTCelltype/vignettes/openaikeypage.png)
+
+Set up the API key as a system environment variable before running GPTCelltype.
+```{r,eval=FALSE}
+Sys.setenv(OPENAI_API_KEY = 'your_openai_API_key')
+```
+
 
 ### Run GPTCelltype
 
@@ -54,7 +64,6 @@ We demonstrate how to run GPTCelltype as follows.  The main function is **`gptce
 
 Among the input arguments, **`input`** can either be the differential gene table returned by Seurat **`FindAllMarkers()`** function, or a list of genes.
 **`tissuename`** (optional) is a tissue name.
-**`openai_key`** is your OpenAI key obtained from [API key page](https://platform.openai.com/account/api-keys) (see above section).
 **`model`** is a valid GPT-4 or GPT-3.5 model name listed on [Models page](https://platform.openai.com/docs/models). Default is 'gpt-4'.
 **`topgenenumber`** is the number of top differential genes to be used when the input is Seurat differential genes. The output is a vector of cell types.
 
@@ -69,27 +78,22 @@ Load the Seurat package.
 library(Seurat, quietly = TRUE)
 ```
 
-Set up your OpenAI key:
-
-```{r,eval=FALSE}
-openaikey <- 'your openai key here'
-```
 
 
 In the below example, we are going to use a Seurat object called 'pbmc_small' provided by the Seurat package. In real applications, a Seurat project obtained after running the standard Seurat pipeline should be prepared. The Seurat project should have cell clustering available. Use FindAllMarkers() function to generate the differential gene table if you haven't done so:
 
 ```{r}
 data("pbmc_small")
-all.markers <- FindAllMarkers(object = pbmc_small)
+suppressWarnings({
+  all.markers <- FindAllMarkers(object = pbmc_small)
+})
+
 ```
 
 Perform cell type annotation by GPT-4 using the gptcelltype() function. Here you can optionally provide the actual name of the tissue for your dataset.
 ```{r}
 res <- gptcelltype(all.markers, 
             tissuename = 'human PBMC', 
-            openai_key = openaikey, 
-            ## Note: Please provide your OpenAI key to get cell type annotations;
-            ## or otherwise the output is the prompt itself.
             model = 'gpt-4'
 )
 ```
@@ -102,7 +106,7 @@ res
 If the results make sense, we can assign the cell type annotations back to the Seurat object and visualize the cell type annotations on the UMAP:
 
 ```{r}
-pbmc_small$celltype <- res[as.character(Idents(pbmc_small))]
+pbmc_small@meta.data$celltype <- as.factor(res[as.character(Idents(pbmc_small))])
 DimPlot(pbmc_small,group.by='celltype')
 ```
 
@@ -110,18 +114,18 @@ If the results need to be fine-tuned, it is easy to reassign cell type annotatio
 
 ```{r}
 res[1] <- 'Classical monocytes'
-pbmc_small$celltype <- res[as.character(Idents(pbmc_small))]
+pbmc_small@meta.data$celltype <- res[as.character(Idents(pbmc_small))]
 ```
 
-If you prefer not to link to GPT-4 API or do not have OpenAI key, you can set `openai_key = NA`. In this case, the gptcelltype() function will print the prompt directly, which can be copied and pasted into the GPT-4 or ChatGPT online user interface to obtain cell type annotations.
-
+If you prefer not to link to GPT-4 API or do not have OpenAI key, you can set `Sys.setenv(OPENAI_API_KEY = '')`. In this case, the gptcelltype() function will print the prompt directly, which can be copied and pasted into the GPT-4 or ChatGPT online user interface to obtain cell type annotations.
 ```{r}
+Sys.setenv(OPENAI_API_KEY = '')
 data("pbmc_small")
-all.markers <- FindAllMarkers(object = pbmc_small)
+suppressWarnings({
+  all.markers <- FindAllMarkers(object = pbmc_small)
+})
 res <- gptcelltype(all.markers, 
             tissuename = 'human PBMC', 
-            openai_key = NA, 
-            ## Note: When NA, the output is the prompt itself.
             model = 'gpt-4'
 )
 cat(res)
@@ -130,14 +134,16 @@ cat(res)
 
 ####  Example 2: use a list of genes as input
 
+Set up your OpenAI API key as a system environment variable before running GPTCelltype.
+```{r,eval=FALSE}
+Sys.setenv(OPENAI_API_KEY = 'your_openai_API_key')
+```
+
 If we provide a list of two gene vectors: the first vector contains *CD4* and *CD3D*, and the second vector contains *CD14*, then we can call the function in this way:
 ```{r}
 res <- gptcelltype(
   input = list(cluster1 = c('CD4, CD3D'), cluster2 = 'CD14'),
   tissuename = 'human PBMC',
-  openai_key = openaikey, 
-  ## Note: Please provide your OpenAI key to get cell type annotations;
-  ## or otherwise the output is the prompt itself.
   model = 'gpt-4'
 )
 res
