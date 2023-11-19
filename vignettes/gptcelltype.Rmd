@@ -51,10 +51,6 @@ Set up the API key as a system environment variable before running GPTCelltype.
 Sys.setenv(OPENAI_API_KEY = 'your_openai_API_key')
 ```
 
-```{r,echo=FALSE}
-Sys.setenv(OPENAI_API_KEY = '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')
-```
-
 
 ### Run GPTCelltype
 
