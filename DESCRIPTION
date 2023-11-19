@@ -2,7 +2,7 @@ Package: GPTCelltype
 Type: Package
 Title: Reference-free and cost-effective automated cell type annotation
         with GPT-4 in single-cell RNA-seq analysis
-Version: 1.0
+Version: 1.0.1
 Date: 2023-08-28
 Author: Wenpin Hou, Zhicheng Ji
 Maintainer: Wenpin Hou <wh2526@cumc.columbia.edu>
