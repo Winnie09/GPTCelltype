@@ -7,9 +7,9 @@ author:
 - $^2$Department of Biostatistics and Bioinformatics, Duke University School of Medicine
 - $^*$ corresponding authors
 output:
-  pdf_document: default
   html_document:
     df_print: paged
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -39,7 +39,7 @@ install.packages("openai")
 ### Set up OpenAI API key as an environment variable
 
 GPTCelltype integrates the [OpenAI API](https://platform.openai.com/account/api-keys) into the software. To connect to OpenAI API, a secret [API key](https://platform.openai.com/account/api-keys) is required.
-To avoid the risk of exposing the API key or comitting the key to browsers, users need to set up the API key as a system environment variable before running GPTCelltype. If the API key is provided, cell type annotations are returned. Otherwise, if the API key is not provided, the output from GPTCelltype is the prompt itself which users can further used to communicate with the GPT chatbot. 
+To avoid the risk of exposing the API key or committing the key to browsers, users need to set up the API key as a system environment variable before running GPTCelltype. If the API key is provided, cell type annotations are returned. Otherwise, if the API key is not provided, the output from GPTCelltype is the prompt itself which users can further used to communicate with the GPT chatbot. 
 
 
 You can generate your API key in your OpenAI account webpage: log in to [OpenAI](https://openai.com/), click on "Personal" on the upper right corner, click on "View API keys" in the break-down list, and then click on "Create new secret key" which directs you to the [API key page](https://platform.openai.com/account/api-keys). Copy the key and paste it on a note for further use. Avoid sharing your API key with others or uploading it to public spaces. Make sure it's not visible in browsers or any client-side scripts.
@@ -49,6 +49,10 @@ You can generate your API key in your OpenAI account webpage: log in to [OpenAI]
 Set up the API key as a system environment variable before running GPTCelltype.
 ```{r,eval=FALSE}
 Sys.setenv(OPENAI_API_KEY = 'your_openai_API_key')
+```
+
+```{r,echo=FALSE}
+Sys.setenv(OPENAI_API_KEY = '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')
 ```
 
 

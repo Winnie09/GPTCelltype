@@ -44,7 +44,7 @@ gptcelltype <- function(input, tissuename=NULL, model='gpt-4', topgenenumber = 1
   }
   
   if (!API.flag){
-   message = paste0('Identify cell types of ',tissuename,' cells using the following markers separately for each row. Only provide the cell type name. Do not show numbers before the name. Some can be a mixture of multiple cell types. ',  "\n", paste0(names(input), ':',unlist(input),collapse = "\n"))
+   message = paste0('Identify cell types of ',tissuename,' cells using the following markers separately for each\n row. Only provide the cell type name. Do not show numbers before the name.\n Some can be a mixture of multiple cell types. ',  "\n", paste0(names(input), ':',unlist(input),collapse = "\n"))
     
     return(message)
     
@@ -63,7 +63,7 @@ gptcelltype <- function(input, tissuename=NULL, model='gpt-4', topgenenumber = 1
       while (flag == 0) {
         k <- openai::create_chat_completion(
           model = model,
-          message = list(list("role" = "user", "content" = paste0('Identify cell types of ',tissuename,' cells using the following markers separately for each row. Only provide the cell type name. Do not show numbers before the name. Some can be a mixture of multiple cell types.\n',paste(input[id],collapse = '\n'))))
+          message = list(list("role" = "user", "content" = paste0('Identify cell types of ',tissuename,' cells using the following markers separately for each\n row. Only provide the cell type name. Do not show numbers before the name.\n Some can be a mixture of multiple cell types.\n',paste(input[id],collapse = '\n'))))
         )
         res <- strsplit(k$choices[,'message.content'],'\n')[[1]]
         if (length(res)==length(id))
@@ -72,7 +72,7 @@ gptcelltype <- function(input, tissuename=NULL, model='gpt-4', topgenenumber = 1
       names(res) <- names(input)[id]
       res
     },simplify = F) 
-    print('Note: It is always recommended to check the results returned by GPT-4 in case of AI hallucination, before going to down-stream analysis.')
+    print('Note: It is always recommended to check the results returned by GPT-4 in case of\n AI hallucination, before going to down-stream analysis.')
     return(gsub(',$','',unlist(allres)))
   }
   
