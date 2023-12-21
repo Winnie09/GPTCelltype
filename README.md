@@ -126,7 +126,8 @@ You can view the complete vignette [here](https://winnie09.github.io/Wenpin_Hou/
 
 ## Citation
 
-Hou, W. and Ji, Z., 2023. Reference-free and cost-effective automated cell type annotation with GPT-4 in single-cell RNA-seq analysis. [bioRxiv, pp.2023-04](https://www.biorxiv.org/content/10.1101/2023.04.16.537094v1). 
+Hou, W. and Ji, Z., 2023. Assessing GPT-4 for cell type annotation in single-cell RNA-seq analysis. [bioRxiv, pp.2023-04, doi: https://doi.org/10.1101/2023.04.16.537094](https://www.biorxiv.org/content/10.1101/2023.04.16.537094v2). 
+
 
 ## Contact
 
