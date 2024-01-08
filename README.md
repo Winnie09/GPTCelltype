@@ -15,7 +15,13 @@ install.packages("openai")
 Please find information about trouble shooting below.
 
 ## Quick Start 
+```{r eval = FALSE}
+Sys.setenv(OPENAI_API_KEY = 'your_openai_API_key')
+library(GPTCelltype)library(openai)res <- gptcelltype(all.markers,             tissuename = 'human PBMC',             model = 'gpt-4')
+```
+where **all.markers** is the output object from the Seurat function **FindAllMarkers()**. 
 
+## Vignette
 You can view the complete vignette [here](https://winnie09.github.io/Wenpin_Hou/pages/gptcelltype.html).
 
 ## Trouble shooting
