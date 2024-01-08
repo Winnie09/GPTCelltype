@@ -1,4 +1,4 @@
-Assessing GPT-4 for cell type annotation in single-cell RNA-seq analysis
+GPTCelltype: Automatic cell type annotation with GPT-4 in single-cell RNA-seq analysis
 ====
 
 ## Overview
