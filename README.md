@@ -17,14 +17,19 @@ Please find information about trouble shooting below.
 ## Quick Start 
 ```{r eval = FALSE}
 Sys.setenv(OPENAI_API_KEY = 'your_openai_API_key')
-library(GPTCelltype)library(openai)res <- gptcelltype(all.markers,             tissuename = 'human PBMC',             model = 'gpt-4')
+library(GPTCelltype)
+library(openai)
+res <- gptcelltype(all.markers, 
+            tissuename = 'human PBMC', 
+            model = 'gpt-4'
+)
 ```
 where **all.markers** is the output object from the Seurat function **FindAllMarkers()**. 
 
 ## Vignette
 You can view the complete vignette [here](https://winnie09.github.io/Wenpin_Hou/pages/gptcelltype.html).
 
-## Trouble shooting
+## Trouble Shooting
 
 GPTCelltype software can be installed via Github in seconds. Users should have R > 3.5.x installed. R can be downloaded here: http://www.r-project.org/.
 
