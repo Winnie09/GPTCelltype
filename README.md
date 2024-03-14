@@ -9,7 +9,7 @@ install.packages("openai")
 remotes::install_github("Winnie09/GPTCelltype")
 ```
 
-## `r icon::fa("rocket")`  Quick start with Seurat pipeline 
+##  🚀 Quick start with Seurat pipeline 
 
 
 ```{r eval = FALSE}
@@ -32,7 +32,7 @@ obj@meta.data$celltype <- as.factor(res[as.character(Idents(obj))])
 # Visualize cell type annotation on UMAP
 DimPlot(obj,group.by='celltype')
 ```
-#
+
 ```diff
 - Warning: avoid sharing your API key with others or uploading it to public spaces.
 ```
