@@ -21,7 +21,7 @@ library(GPTCelltype)
 library(openai)
 
 # Assume you have already run the standard Seurat pipeline https://satijalab.org/seurat/
-# obj is the seurat object, markers is the output from FindAllMarkers(obj)
+# "obj" is the Seurat object; "markers" is the output from FindAllMarkers(obj)
 # Cell type annotation by GPT-4
 res <- gptcelltype(markers, model = 'gpt-4')
 
@@ -32,7 +32,9 @@ obj@meta.data$celltype <- as.factor(res[as.character(Idents(obj))])
 DimPlot(obj,group.by='celltype')
 ```
 
-\textcolor{red}{Warning: avoid sharing your API key with others or uploading it to public spaces. }
+<span style="Warning: avoid sharing your API key with others or uploading it to public spaces.">red</span>
+
+
 
 ## Vignette
 You can view the complete vignette [here](https://winnie09.github.io/Wenpin_Hou/pages/gptcelltype.html).
