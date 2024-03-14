@@ -1,4 +1,4 @@
-GPTCelltype: Automatic cell type annotation with GPT-4
+🚀 GPTCelltype: Automatic cell type annotation with GPT-4
 ====
 
 ## Installation 
@@ -9,7 +9,7 @@ install.packages("openai")
 remotes::install_github("Winnie09/GPTCelltype")
 ```
 
-## Quick start with Seurat pipeline
+## 🚀 Quick start with Seurat pipeline
 
 ```{r eval = FALSE}
 
@@ -33,7 +33,7 @@ DimPlot(obj,group.by='celltype')
 ```
 
 ```diff
-! Warning: avoid sharing your API key with others or uploading it to public spaces.
+- Warning: avoid sharing your API key with others or uploading it to public spaces.
 ```
 
 ## Vignette
