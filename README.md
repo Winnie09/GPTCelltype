@@ -20,7 +20,7 @@ Sys.setenv(OPENAI_API_KEY = 'your_openai_API_key')
 library(GPTCelltype)
 library(openai)
 
-# Assume you have already run the standard Seurat pipeline https://satijalab.org/seurat/
+# Assume you have already run the Seurat pipeline https://satijalab.org/seurat/
 # "obj" is the Seurat object; "markers" is the output from FindAllMarkers(obj)
 # Cell type annotation by GPT-4
 res <- gptcelltype(markers, model = 'gpt-4')
