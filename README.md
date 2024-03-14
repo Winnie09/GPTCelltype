@@ -32,9 +32,9 @@ obj@meta.data$celltype <- as.factor(res[as.character(Idents(obj))])
 DimPlot(obj,group.by='celltype')
 ```
 
-
-<span style="color:red">Warning: avoid sharing your API key with others or uploading it to public spaces.</span>
-
+```diff
+! Warning: avoid sharing your API key with others or uploading it to public spaces.
+```
 
 ## Vignette
 You can view the complete vignette [here](https://winnie09.github.io/Wenpin_Hou/pages/gptcelltype.html).
