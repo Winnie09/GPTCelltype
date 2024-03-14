@@ -9,7 +9,7 @@ install.packages("openai")
 remotes::install_github("Winnie09/GPTCelltype")
 ```
 
-## Quick Start with Seurat pipeline
+## Quick start with Seurat pipeline
 
 ```{r eval = FALSE}
 
