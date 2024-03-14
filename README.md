@@ -12,17 +12,27 @@ remotes::install_github("Winnie09/GPTCelltype")
 ## Quick Start with Seurat pipeline
 
 ```{r eval = FALSE}
-# obj is the seurat object, markers is the output from FindAllMarkers(obj)
+
+# IMPORTANT! Assign your OpenAI API key. See Vignette for details
 Sys.setenv(OPENAI_API_KEY = 'your_openai_API_key')
+
+# Load packages
 library(GPTCelltype)
 library(openai)
+
+# Assume you have already run the standard Seurat pipeline https://satijalab.org/seurat/
+# obj is the seurat object, markers is the output from FindAllMarkers(obj)
 # Cell type annotation by GPT-4
 res <- gptcelltype(markers, model = 'gpt-4')
+
 # Assign cell type annotation back to Seurat object
 obj@meta.data$celltype <- as.factor(res[as.character(Idents(obj))])
+
 # Visualize cell type annotation on UMAP
 DimPlot(obj,group.by='celltype')
 ```
+
+\textcolor{red}{Warning: avoid sharing your API key with others or uploading it to public spaces. }
 
 ## Vignette
 You can view the complete vignette [here](https://winnie09.github.io/Wenpin_Hou/pages/gptcelltype.html).
