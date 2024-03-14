@@ -32,8 +32,8 @@ obj@meta.data$celltype <- as.factor(res[as.character(Idents(obj))])
 DimPlot(obj,group.by='celltype')
 ```
 
-<span style="Warning: avoid sharing your API key with others or uploading it to public spaces.">red</span>
 
+<span style="color:red">Warning: avoid sharing your API key with others or uploading it to public spaces.</span>
 
 
 ## Vignette
