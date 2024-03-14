@@ -1,4 +1,4 @@
-🚀 GPTCelltype: Automatic cell type annotation with GPT-4
+GPTCelltype: Automatic cell type annotation with GPT-4
 ====
 
 ## Installation 
