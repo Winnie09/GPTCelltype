@@ -44,7 +44,12 @@ To avoid the risk of exposing the API key or committing the key to browsers, use
 
 You can generate your API key in your OpenAI account webpage: log in to [OpenAI](https://openai.com/), click on "Personal" on the upper right corner, click on "View API keys" in the break-down list, and then click on "Create new secret key" which directs you to the [API key page](https://platform.openai.com/account/api-keys). Copy the key and paste it on a note for further use. Avoid sharing your API key with others or uploading it to public spaces. Make sure it's not visible in browsers or any client-side scripts.
 
-![](/Users/wenpinhou/Dropbox/gptcelltype/github/GPTCelltype/vignettes/openaikeypage.png)
+
+![](/Users/wenpinhou/Dropbox/HouLab/gptcelltype/github/GPTCelltype/vignettes/1.png){width=32%}
+![](/Users/wenpinhou/Dropbox/HouLab/gptcelltype/github/GPTCelltype/vignettes/2.png){width=32%}
+![](/Users/wenpinhou/Dropbox/HouLab/gptcelltype/github/GPTCelltype/vignettes/3.png){width=32%}
+![](/Users/wenpinhou/Dropbox/HouLab/gptcelltype/github/GPTCelltype/vignettes/4.png){width=32%}
+![](/Users/wenpinhou/Dropbox/HouLab/gptcelltype/github/GPTCelltype/vignettes/5.png){width=32%}
 
 Set up the API key as a system environment variable before running GPTCelltype.
 ```{r,eval=FALSE}
@@ -105,7 +110,7 @@ res
 
 If the results make sense, we can assign the cell type annotations back to the Seurat object and visualize the cell type annotations on the UMAP:
 
-```{r}
+```{r,  fig.height=4}
 pbmc_small@meta.data$celltype <- as.factor(res[as.character(Idents(pbmc_small))])
 DimPlot(pbmc_small,group.by='celltype')
 ```
