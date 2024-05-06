@@ -53,8 +53,7 @@ Cell type annotation is an essential step in single-cell RNA-seq analysis. Howev
 
 ## Citation
 
-Hou, W. and Ji, Z., 2023. Assessing GPT-4 for cell type annotation in single-cell RNA-seq analysis. [bioRxiv, pp.2023-04, doi: https://doi.org/10.1101/2023.04.16.537094](https://www.biorxiv.org/content/10.1101/2023.04.16.537094v2). 
-
+Hou, W. and Ji, Z., 2023. Reference-free and cost-effective automated cell type annotation with GPT-4 in single-cell RNA-seq analysis. [Nature Methods, 2024 March 25](https://link.springer.com/article/10.1038/s41592-024-02235-4?utm_source=rct_congratemailt&utm_medium=email&utm_campaign=oa_20240325&utm_content=10.1038/s41592-024-02235-4).
 
 ## Contact
 
