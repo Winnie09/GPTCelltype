@@ -40,6 +40,7 @@ gptcelltype <- function(input, tissuename=NULL, model='gpt-4', topgenenumber = 1
   if (class(input)=='list') {
     input <- sapply(input,paste,collapse=',')
   } else {
+    input <- input[input$avg_log2FC > 0,,drop=FALSE]
     input <- tapply(input$gene,list(input$cluster),function(i) paste0(i[1:topgenenumber],collapse=','))
   }
   
